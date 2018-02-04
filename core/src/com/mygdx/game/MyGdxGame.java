@@ -11,7 +11,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	Texture img;
 	int i = 5;
 	int j = 6;
-	
+	int doeIets = 525;
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
