@@ -9,21 +9,27 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class MyGdxGame extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
+	Texture BerImg;
+	
 	int i = 5;
 	int j = 6;
 	int doeIets = 525;
+	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
+		BerImg = new Texture("beep.png");
 	}
 
 	@Override
 	public void render () {
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
 		batch.begin();
 		batch.draw(img, 0, 0);
+		batch.draw(BerImg, 60,60,200,70);
 		batch.end();
 	}
 	
