@@ -14,13 +14,14 @@ public class MyGdxGame extends ApplicationAdapter {
 	Texture img;
 	Texture BerImg;
 	TimeUtil timeUtil = new TimeUtil(60);
-	BaseScene currentScene = new BaseScene(-1,"default");
+	BaseScene currentScene;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
 		BerImg = new Texture("beep.png");
+		currentScene = new BaseScene(-1,"default");
 	}
 
 	@Override
