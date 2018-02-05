@@ -5,15 +5,16 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.Scene.BaseScene;
+
+import Utils.TimeUtil;
 
 public class MyGdxGame extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
 	Texture BerImg;
-	
-	int i = 5;
-	int j = 6;
-	int doeIets = 525;
+	TimeUtil timeUtil = new TimeUtil(60);
+	BaseScene currentScene = new BaseScene(-1,"default");
 	
 	@Override
 	public void create () {
@@ -24,6 +25,13 @@ public class MyGdxGame extends ApplicationAdapter {
 
 	@Override
 	public void render () {
+		timeUtil.tick();
+		currentScene.Update(timeUtil.getTimeStamp());
+		currentScene.Draw();
+		
+		//The following 2 lines clear the screen before it's drawn on the canvas
+		//You can change the Color values, according to RGBA, 0.0f - 1.0f
+		//Try and experiment to see what happens if you don't clear the screen ;)
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
