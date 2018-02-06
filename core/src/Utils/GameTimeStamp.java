@@ -1,5 +1,9 @@
 package Utils;
 
+/**
+ * @author bernd
+ *
+ */
 public class GameTimeStamp{
 	private int deltaMilliseconds = 0;
 	private int totalSecondsPassed = 0;	
