@@ -12,7 +12,7 @@ import Utils.*;
  */
 public class BaseScene {
 	//A spritebatch queries and draws images on the screen.
-	private SpriteBatch batch;
+	protected SpriteBatch batch;
 	boolean bIsActive = false;
 	
 	/**
