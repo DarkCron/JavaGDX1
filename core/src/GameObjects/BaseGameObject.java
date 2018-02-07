@@ -6,8 +6,8 @@ import Utils.GameTimeStamp;
 
 public class BaseGameObject {
 	
-	private int ID = -1;
-	private String objectName = "object";
+	protected int ID = -1;
+	protected String objectName = "object";
 	
 	
 	public BaseGameObject() {
