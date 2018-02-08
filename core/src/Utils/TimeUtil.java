@@ -24,7 +24,7 @@ public class TimeUtil {
 
 	public void tick() {
 		float tempTick = Gdx.graphics.getDeltaTime();
-		secondsCounter += tempTick;
+		secondsCounter += tempTick;		
 		deltaMilliseconds = (int) (tempTick * 1000f);
 		frameCount += 1;
 
