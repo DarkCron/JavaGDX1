@@ -32,9 +32,9 @@ public class TimeUtil {
 
 			secondsCounter -= 1;
 			totalSecondsPassed += 1;
-			System.out.print(totalSecondsPassed + "\n");
+			//System.out.print(totalSecondsPassed + "\n");
 			currentFPS = frameCount;
-			System.out.print("FPS: " + frameCount + "\n");
+			//System.out.print("FPS: " + frameCount + "\n");
 			frameCount = 0;
 		}
 	}

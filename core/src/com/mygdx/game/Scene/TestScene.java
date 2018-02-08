@@ -38,11 +38,9 @@ public class TestScene extends BaseScene {
 	}
 	
 	Runnable MoveSpriteLeft = new Runnable() {
-		
 		@Override
 		public void run() {
-			idle_char_sprite.Move(new Point(-10, 0));
-			
+			idle_char_sprite.Move(new Point(-10, 0));	
 		}
 	};
 

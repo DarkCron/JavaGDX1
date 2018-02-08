@@ -25,6 +25,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		BerImg = new Texture("beep.png");
 		testScene = new TestScene(99, "Test Scene");
 		currentScene = testScene;
+		Gdx.graphics.setWindowedMode(1366, 768);
 	}
 
 	@Override
