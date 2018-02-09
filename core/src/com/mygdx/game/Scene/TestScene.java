@@ -21,15 +21,14 @@ import Input.BaseGameInputProcessor;
 import Input.InputKey;
 import Input.TestSceneInput;
 import Utils.GameTimeStamp;
+import Utils.RenderCanvas;
 import Visual.Animation.BaseAnimation;
 
 public class TestScene extends BaseScene {
 
 	TestSceneInput input_handler;
 	GameSprite idle_char_sprite;
-	FrameBuffer canvas; // The canvas we will draw on
-	OrthographicCamera canvas_camera;
-	SpriteBatch canvas_batch;
+	RenderCanvas canvas;
 
 	public TestScene(int id, String name) {
 		super(id, name);
@@ -38,19 +37,7 @@ public class TestScene extends BaseScene {
 
 		input_handler = new TestSceneInput(GenerateInputKeyList());
 		Gdx.input.setInputProcessor(input_handler);
-
-		canvas = new FrameBuffer(Format.RGBA8888, 200, 250, false); // We create a canvas of size 200,200
-		// NOTE: a canvas point of origin will always be from origin (0,0)
-		canvas_camera = new OrthographicCamera(200, 250);
-		// NOTE: size of the camera == size of canvas
-		canvas_camera.translate(canvas_camera.viewportWidth / 2, canvas_camera.viewportHeight / 2);
-		// A camera is initialized centered around origin (0,0) therefore the translation
-		canvas_camera.update();
-		// Update the camera because we move it
-		canvas_batch = new SpriteBatch();
-		// A separate batch to draw on the canvas with
-		canvas_batch.setProjectionMatrix(canvas_camera.combined);
-		// Set our offscreen render on the same perspective as our batch
+		canvas = new RenderCanvas(200, 250);
 	}
 
 	private InputKey[] GenerateInputKeyList() {
@@ -91,27 +78,17 @@ public class TestScene extends BaseScene {
 
 	@Override
 	public void Draw() {
-		//We draw on our canvas here, note the "canvas_batch"
-		canvas.begin();
-		Gdx.gl.glClearColor(0, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		canvas_batch.begin();
-		idle_char_sprite.Draw(canvas_batch);
-		canvas_batch.end();
-		canvas.end();
+		canvas.Begin(Color.BLACK);
+		idle_char_sprite.Draw(canvas.getBatch());
+		canvas.End();
 
-		Sprite temp = new Sprite(canvas.getColorBufferTexture());
-		temp.flip(false, true); // Because of how framebuffers work textures from the buffer should be flipped
-								// on the y coordinates
-
-		//We draw on our final screen, note the "batch"
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 		batch.enableBlending();
 		idle_char_sprite.Draw(batch);
 		batch.setColor(Color.RED);
-		batch.draw(temp, 200, 0);
+		canvas.Draw(batch, new Point(200,0));
 		batch.setColor(Color.WHITE);
 		batch.end();
 	}
