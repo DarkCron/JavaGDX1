@@ -10,7 +10,8 @@ public class InputKey {
 	protected int ID = -1; // action ID
 	protected String name = ""; // action name
 	
-	protected Runnable action;
+	protected Runnable action_key_down;
+	protected Runnable action_key_up;
 	
 	public InputKey(int _ID, String _name, int _gameKey) {
 		defaultGameKey = _gameKey;
@@ -23,11 +24,19 @@ public class InputKey {
 		return gameKey;
 	}
 	
-	public void SetAction(Runnable _action) {
-		action = _action;
+	public void SetActionKeyDown(Runnable _action) {
+		action_key_down = _action;
 	}
 	
-	public void Execute() {
-		action.run();
+	public void SetActionKeyUp(Runnable _action) {
+		action_key_up = _action;
+	}
+	
+	public void ExecuteKeyDown() {
+		action_key_down.run();
+	}
+	
+	public void ExecuteKeyUp() {
+		action_key_up.run();
 	}
 }
